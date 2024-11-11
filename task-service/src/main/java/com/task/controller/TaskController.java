@@ -5,11 +5,13 @@ import com.task.entity.TaskStatus;
 import com.task.entity.User;
 import com.task.service.TaskService;
 import com.task.service.UserService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -23,6 +25,7 @@ public class TaskController {
     private UserService userService;
 
     @PostMapping("/createTask")
+    @CircuitBreaker(name = "userBreaker",fallbackMethod = "userFallback")
     public ResponseEntity<Task> createTask(@RequestBody Task task, @RequestHeader("Authorization") String jwt) throws Exception {
         User user=userService.getUser(jwt);
         Task taskCreated=taskService.createTask(task,user.getRole());
@@ -30,6 +33,7 @@ public class TaskController {
     }
 
     @GetMapping("/getTaskById/{id}")
+    @CircuitBreaker(name = "userBreaker",fallbackMethod = "userFallback")
     public ResponseEntity<Task> getTaskById(@PathVariable Long id,@RequestHeader("Authorization") String jwt) throws Exception {
         User user=userService.getUser(jwt);
         Task task=taskService.getTaskById(id);
@@ -37,6 +41,7 @@ public class TaskController {
     }
 
     @GetMapping("/assignedTasksOfUser")
+    @CircuitBreaker(name = "userBreaker",fallbackMethod = "userFallback")
     public ResponseEntity<List<Task>> assignedTasksOfUser(@RequestParam(required = false
     ) TaskStatus taskStatus,@RequestHeader("Authorization") String jwt)
     {
@@ -46,6 +51,7 @@ public class TaskController {
     }
 
     @GetMapping("/assignedTasksToUser/{taskId}/userId")
+    @CircuitBreaker(name = "userBreaker",fallbackMethod = "userFallback")
     public ResponseEntity<Task> assignedTasksToUser(@PathVariable Long taskId,@PathVariable Long userId,
                                                     @RequestHeader("Authorization") String jwt) throws Exception {
         User user=userService.getUser(jwt);
@@ -54,6 +60,7 @@ public class TaskController {
     }
 
     @GetMapping("/getAllTask")
+    @CircuitBreaker(name = "userBreaker",fallbackMethod = "userFallback")
     public ResponseEntity<List<Task>> getAllTask(@RequestParam(required = false
     ) TaskStatus taskStatus,@RequestHeader("Authorization") String jwt)
     {
@@ -63,6 +70,7 @@ public class TaskController {
     }
 
     @DeleteMapping("/deleteTask/{taskId}")
+    @CircuitBreaker(name = "userBreaker",fallbackMethod = "userFallback")
     public ResponseEntity<Void> deleteTask(@PathVariable Long taskid,@RequestHeader("Authorization") String jwt)
     {
         User user=userService.getUser(jwt);
@@ -71,6 +79,7 @@ public class TaskController {
     }
 
     @PutMapping("/updateTask/{taskId}")
+    @CircuitBreaker(name = "userBreaker",fallbackMethod = "userFallback")
     public ResponseEntity<Task> updateTask(@PathVariable Long taskId,@RequestBody Task update,
                                                 @RequestHeader("Authorization") String jwt) throws Exception {
         User user=userService.getUser(jwt);
@@ -82,6 +91,16 @@ public class TaskController {
     public ResponseEntity<Task> setCompleteTask(@PathVariable Long taskId) throws Exception {
         taskService.setCompleteTask(taskId);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    public ResponseEntity<List<Task>> userFallback(TaskStatus taskStatus, String jwt, Throwable exception) {
+        System.out.println("Fallback method is executed due to service is down" + exception.getMessage());
+        Task fallbackTask=new Task();
+        fallbackTask.setTitle("Fallback Task");
+        fallbackTask.setDescription("This is a fallback task because the service is unavailable.");
+        List<Task> fallbackTaskList = new ArrayList<>();
+        fallbackTaskList.add(fallbackTask);
+        return new ResponseEntity<>(fallbackTaskList,HttpStatus.SERVICE_UNAVAILABLE); // A fallback task to return when the circuit breaker is open
     }
 
 }

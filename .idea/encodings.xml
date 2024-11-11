@@ -5,6 +5,8 @@
     <file url="file://$PROJECT_DIR$/Eureka-Server/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/email-notification-scheduler/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/email-notification-scheduler/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/task-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/task-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/task-submission/src/main/java" charset="UTF-8" />

@@ -10,11 +10,13 @@
         <module name="task-user-service" />
         <module name="Eureka-Server" />
         <module name="task-service" />
+        <module name="email-notification-scheduler" />
         <module name="Gateway" />
         <module name="task-submission" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="email-notification-scheduler" target="19" />
       <module name="Eureka-Server" target="19" />
       <module name="Gateway" target="19" />
       <module name="task-service" target="19" />
@@ -26,6 +28,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Eureka-Server" options="-parameters" />
       <module name="Gateway" options="-parameters" />
+      <module name="email-notification-scheduler" options="-parameters" />
       <module name="task-service" options="-parameters" />
       <module name="task-submission" options="-parameters" />
       <module name="task-user-service" options="-parameters" />

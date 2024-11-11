@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/Eureka-Server/Eureka-Server.iml" filepath="$PROJECT_DIR$/Eureka-Server/Eureka-Server.iml" />
       <module fileurl="file://$PROJECT_DIR$/Gateway/Gateway.iml" filepath="$PROJECT_DIR$/Gateway/Gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Task Management System.iml" filepath="$PROJECT_DIR$/.idea/Task Management System.iml" />
+      <module fileurl="file://$PROJECT_DIR$/email-notification-scheduler/email-notification-scheduler.iml" filepath="$PROJECT_DIR$/email-notification-scheduler/email-notification-scheduler.iml" />
       <module fileurl="file://$PROJECT_DIR$/task-service/task-service.iml" filepath="$PROJECT_DIR$/task-service/task-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/task-submission/task-submission.iml" filepath="$PROJECT_DIR$/task-submission/task-submission.iml" />
       <module fileurl="file://$PROJECT_DIR$/task-user-service/task-user-service.iml" filepath="$PROJECT_DIR$/task-user-service/task-user-service.iml" />

@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/task-submission/pom.xml" />
         <option value="$PROJECT_DIR$/Eureka-Server/pom.xml" />
         <option value="$PROJECT_DIR$/Gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/email-notification-scheduler/pom.xml" />
       </list>
     </option>
   </component>
