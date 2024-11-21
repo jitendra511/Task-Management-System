@@ -64,14 +64,14 @@ This is a Role based(Admin,User) Task Management System designed to help organiz
 - Endpoint: DELETE http://localhost:8080/tms/tasks/deleteTask/{taskId}
 - Description: Delete a task by its ID.
 
-&nbsp;4. Update Task by Id
+&nbsp;5. Update Task by Id
 - Endpoint: PUT http://localhost:8080/tms/tasks/updateTask/{taskId}
 - Description: Update or Modify a task by its ID.
 
-&nbsp;4. assigned Tasks of User 
+&nbsp;6. assigned Tasks of User 
 - Endpoint: PUT http://localhost:8080/tms/tasks/assignedTasksOfUser
 - Description: Retrieves Task which is already assigned to user
 
-&nbsp;4. assigned Tasks To User 
+&nbsp;7. assigned Tasks To User 
 - Endpoint: PUT http://localhost:8080/tms/tasks/assignedTasksToUser/{taskId}/userId
 - Description: Admin assign Task to user
